@@ -1,11 +1,10 @@
 package com.example.notes
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity(), iNotesRVAdapter {
 
         viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(NoteViewModel::class.java)
 
-        viewModel.allNotes.observe(this, Observer {list->list?.let{
+        viewModel.allNotes.observe(this, { list->list?.let{
 
             adapter.updateList(it)
          }
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity(), iNotesRVAdapter {
 
     override fun onItemClicked(note: Note) {
         viewModel.deleteNote(note)
-        Toast.makeText(this, "Note Deleted", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Note Deleted", Toast.LENGTH_SHORT).show()
     }
 
     fun submitData(view: View) {
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity(), iNotesRVAdapter {
         if (noteText.isNotEmpty())
         {
             viewModel.insertNote(Note(noteText))
-            Toast.makeText(this, "Note Inserted", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Note Inserted", Toast.LENGTH_SHORT).show()
         }
         else
         {
